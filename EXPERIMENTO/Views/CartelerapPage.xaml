@@ -3,19 +3,14 @@
     x:Class="EXPERIMENTO.Views.CartelerapPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:EXPERIMENTO.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    xmlns:Models="using:EXPERIMENTO.Models"
     Background="Transparent">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
         <StackPanel Padding="36,32,36,36" Spacing="0">
 
-            <!-- ══════════════════════════════════ -->
-            <!-- ENCABEZADO DE PÁGINA              -->
-            <!-- ══════════════════════════════════ -->
+            <!-- ENCABEZADO -->
             <TextBlock Text="Cartelera"
                        FontSize="28"
                        FontWeight="Bold"
@@ -25,9 +20,7 @@
                        Foreground="#6A6A6A"
                        Margin="0,4,0,32" />
 
-            <!-- ══════════════════════════════════ -->
-            <!-- SECCIÓN: EN CARTELERA             -->
-            <!-- ══════════════════════════════════ -->
+            <!-- EN CARTELERA -->
             <TextBlock Text="EN CARTELERA"
                        FontSize="11"
                        FontWeight="SemiBold"
@@ -35,243 +28,39 @@
                        CharacterSpacing="120"
                        Margin="0,0,0,16" />
 
-            <!-- Grilla para En Cartelera (4 columnas fijas) -->
-            <Grid x:Name="GridEnCarrelera" Margin="0,0,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ItemsControl x:Name="ItemsEnCartelera" IsTabStop="False">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                <!-- Card 1: Scream 7 -->
-                <Button Grid.Column="0"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Scream 7">
-                    <Border CornerRadius="10"
-                            Background="#1C0A0A"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <!-- Imagen / poster área -->
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#3D1010"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="😱"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <!-- Badge HOY -->
-                                    <Border Background="#F5C842"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="HOY"
-                                                   FontSize="10"
-                                                   FontWeight="Bold"
-                                                   Foreground="#0D0D0D" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <!-- Info -->
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Scream 7"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="114 min"
-                                               FontSize="11"
-                                               Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="B15" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Terror" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Pelicula">
+                        <Button Click="MovieCard_Click"
+                                Tag="{x:Bind Id}"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Padding="0"
+                                CornerRadius="10">
+                            <StackPanel Margin="10">
+                                <TextBlock Text="{x:Bind Titulo}" 
+                                           FontSize="14" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="White"/>
+                                <TextBlock Text="{x:Bind Director}" 
+                                           FontSize="11" 
+                                           Foreground="Gray"/>
+                                <TextBlock Text="{x:Bind FechaEstreno}" 
+                                           FontSize="11" 
+                                           Foreground="LightGray"/>
                             </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-                <!-- Card 2: Frankenstein -->
-                <Button Grid.Column="2"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Frankenstein">
-                    <Border CornerRadius="10"
-                            Background="#0A1C0A"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#0F2E0F"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🧟"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <Border Background="#F5C842"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="HOY" FontSize="10" FontWeight="Bold" Foreground="#0D0D0D" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Frankenstein"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="150 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="B15" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Drama" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-                <!-- Card 3: Cumbres Borrascosas -->
-                <Button Grid.Column="4"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Cumbres Borrascosas">
-                    <Border CornerRadius="10"
-                            Background="#0A0A1C"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#10102E"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🌪️"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <Border Background="#F5C842"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="HOY" FontSize="10" FontWeight="Bold" Foreground="#0D0D0D" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Cumbres Borrascosas"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="136 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="B15" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Romance" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-                <!-- Card 4: Proyecto Génesis -->
-                <Button Grid.Column="6"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Proyecto Génesis">
-                    <Border CornerRadius="10"
-                            Background="#121208"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#1E1E0A"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🤖"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <Border Background="#F5C842"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="HOY" FontSize="10" FontWeight="Bold" Foreground="#0D0D0D" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Proyecto Génesis"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="128 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="A" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Sci-Fi" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-            </Grid>
-
-            <!-- ══════════════════════════════════ -->
-            <!-- SECCIÓN: PRÓXIMAMENTE             -->
-            <!-- ══════════════════════════════════ -->
+            <!-- PRÓXIMAMENTE -->
             <TextBlock Text="PRÓXIMAMENTE"
                        FontSize="11"
                        FontWeight="SemiBold"
@@ -279,231 +68,37 @@
                        CharacterSpacing="120"
                        Margin="0,40,0,16" />
 
-            <Grid x:Name="GridProximamente">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ItemsControl x:Name="ItemsProximamente" IsTabStop="False">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                <!-- Card 5: El Rey León 2 -->
-                <Button Grid.Column="0"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="El Rey León 2">
-                    <Border CornerRadius="10"
-                            Background="#141008"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#211A0A"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🦁"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <!-- Badge fecha -->
-                                    <Border Background="#2A2A2A"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="25 Jul" FontSize="10" FontWeight="Bold" Foreground="#F5C842" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="El Rey León 2"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="105 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="AA" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Animación" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Pelicula">
+                        <Button Click="MovieCard_Click"
+                                Tag="{x:Bind Id}"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Padding="0"
+                                CornerRadius="10">
+                            <StackPanel Margin="10">
+                                <TextBlock Text="{x:Bind Titulo}" 
+                                           FontSize="14" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="White"/>
+                                <TextBlock Text="{x:Bind Director}" 
+                                           FontSize="11" 
+                                           Foreground="Gray"/>
+                                <TextBlock Text="{x:Bind FechaEstreno}" 
+                                           FontSize="11" 
+                                           Foreground="LightGray"/>
                             </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-                <!-- Card 6: Spider-Man: Nexus -->
-                <Button Grid.Column="2"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Spider-Man: Nexus">
-                    <Border CornerRadius="10"
-                            Background="#0E0814"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#180E22"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🕷️"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <Border Background="#2A2A2A"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="3 Ago" FontSize="10" FontWeight="Bold" Foreground="#F5C842" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Spider-Man: Nexus"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="145 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="B15" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Acción" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-                <!-- Card 7: Interestelar 2 -->
-                <Button Grid.Column="4"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Interestelar 2">
-                    <Border CornerRadius="10"
-                            Background="#080E14"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#0C1620"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🚀"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <Border Background="#2A2A2A"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="15 Ago" FontSize="10" FontWeight="Bold" Foreground="#F5C842" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Interestelar 2"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="180 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="A" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Sci-Fi" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-                <!-- Card 8: Dune: Parte III -->
-                <Button Grid.Column="6"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Stretch"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Padding="0"
-                        CornerRadius="10"
-                        Click="MovieCard_Click"
-                        Tag="Dune: Parte III">
-                    <Border CornerRadius="10"
-                            Background="#14100A"
-                            BorderBrush="#2A2A2A"
-                            BorderThickness="1">
-                        <Grid>
-                            <Border Height="180"
-                                    CornerRadius="10,10,0,0"
-                                    Background="#201808"
-                                    VerticalAlignment="Top">
-                                <Grid>
-                                    <TextBlock Text="🧙"
-                                               FontSize="52"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center" />
-                                    <Border Background="#2A2A2A"
-                                            CornerRadius="4"
-                                            Padding="8,3"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="0,10,10,0">
-                                        <TextBlock Text="22 Ago" FontSize="10" FontWeight="Bold" Foreground="#F5C842" />
-                                    </Border>
-                                </Grid>
-                            </Border>
-                            <StackPanel Margin="0,185,0,0" Padding="14,12,14,14" Spacing="6">
-                                <TextBlock Text="Dune: Parte III"
-                                           FontSize="14"
-                                           FontWeight="SemiBold"
-                                           Foreground="White" />
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <TextBlock Text="160 min" FontSize="11" Foreground="#5A5A5A" />
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="B15" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                    <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
-                                        <TextBlock Text="Aventura" FontSize="10" Foreground="#8A8A8A" />
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </Button>
-
-            </Grid>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
         </StackPanel>
     </ScrollViewer>

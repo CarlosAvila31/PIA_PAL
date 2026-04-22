@@ -1,3 +1,7 @@
+using System;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 using EXPERIMENTO.Models;
 
@@ -7,161 +11,139 @@ namespace EXPERIMENTO.Data
     {
         public static List<Pelicula> Todas { get; } = new()
         {
-            // ── EN CARTELERA ────────────────────────────────────────────
             new Pelicula
             {
-                Titulo          = "Scream 7",
-                Emoji           = "😱",
-                RutaPoster      = "// ms-appx:///Assets/Posters/scream7",
-                Calificacion    = 8.2,
-                NumResenas      = 4820,
-                Generos         = ["Terror", "Slasher", "B15"],
+                Id = 1,
+                Titulo = "Scream 7",
+                RutaPoster = "// ms-appx:///Assets/Posters/scream7",
+                Generos = new[] { "Terror", "Slasher" },
                 DuracionMinutos = 114,
-                Clasificacion   = "B15",
-                FechaEstreno    = "4 Abr 2025",
-                Director        = "Christopher Landon",
-                Reparto         = "Melissa Barrera, Jenna Ortega",
-                Sinopsis        = "La pandilla de Woodsboro enfrenta a un Ghostface más despiadado que nunca, en la entrega más sangrienta de la saga.",
-                Salas           = "Salas 1, 2, 4, 7",
-                Audio           = "Dolby Atmos",
-                EsHoy           = true
+                Clasificacion = "B15",
+                FechaEstreno = "2026/04/12",
+                Director = "Christopher Landon",
+                Reparto = "Melissa Barrera, Jenna Ortega",
+                Sinopsis = "La pandilla de Woodsboro enfrenta a un Ghostface más despiadado que nunca, en la entrega más sangrienta de la saga."
             },
             new Pelicula
             {
-                Titulo          = "Frankenstein",
-                Emoji           = "🧟",
-                RutaPoster      = "#0F2E0F",
-                Calificacion    = 7.8,
-                NumResenas      = 3150,
-                Generos         = ["Drama", "Terror", "B15"],
+                Id = 2,
+                Titulo = "Frankenstein",
+                RutaPoster = "#0F2E0F",
+                Generos = new[] { "Drama", "Terror" },
                 DuracionMinutos = 150,
-                Clasificacion   = "B15",
-                FechaEstreno    = "4 Abr 2025",
-                Director        = "Guillermo del Toro",
-                Reparto         = "Oscar Isaac, Mia Goth, Andrew Scott",
-                Sinopsis        = "Una nueva visión del clásico de Mary Shelley. El doctor Frankenstein lleva su obsesión por vencer a la muerte más allá de todo límite ético.",
-                Salas           = "Salas 3, 5",
-                Audio           = "Dolby Atmos",
-                EsHoy           = true
+                Clasificacion = "B15",
+                FechaEstreno = "2026/04/04",
+                Director = "Guillermo del Toro",
+                Reparto = "Oscar Isaac, Mia Goth, Andrew Scott",
+                Sinopsis = "Una nueva visión del clásico de Mary Shelley. El doctor Frankenstein lleva su obsesión por vencer a la muerte más allá de todo límite ético."
             },
             new Pelicula
             {
-                Titulo          = "Cumbres Borrascosas",
-                Emoji           = "🌪️",
-                RutaPoster      = "#10102E",
-                Calificacion    = 7.5,
-                NumResenas      = 2200,
-                Generos         = ["Romance", "Drama", "B15"],
+                Id = 3,
+                Titulo = "Cumbres Borrascosas",
+                RutaPoster = "#10102E",
+                Generos = new[] { "Romance", "Drama", "B15" },
                 DuracionMinutos = 136,
-                Clasificacion   = "B15",
-                FechaEstreno    = "4 Abr 2025",
-                Director        = "Emerald Fennell",
-                Reparto         = "Jacob Elordi, Margot Robbie",
-                Sinopsis        = "La tempestuosa historia de amor entre Heathcliff y Catherine cobra vida en esta adaptación visualmente deslumbrante del clásico de Emily Brontë.",
-                Salas           = "Salas 6, 8",
-                Audio           = "Estéreo",
-                EsHoy           = true
+                Clasificacion = "B15",
+                FechaEstreno = "2026/04/18",
+                Director = "Emerald Fennell",
+                Reparto = "Jacob Elordi, Margot Robbie",
+                Sinopsis = "La tempestuosa historia de amor entre Heathcliff y Catherine cobra vida en esta adaptación visualmente deslumbrante del clásico de Emily Brontë."
             },
             new Pelicula
             {
-                Titulo          = "Proyecto Génesis",
-                Emoji           = "🤖",
-                RutaPoster      = "#1E1E0A",
-                Calificacion    = 8.5,
-                NumResenas      = 5100,
-                Generos         = ["Sci-Fi", "Acción", "A"],
+                Id = 4,
+                Titulo = "Proyecto Génesis",
+                RutaPoster = "#1E1E0A",
+                Generos = new[] { "Sci-Fi", "Acción" },
                 DuracionMinutos = 128,
-                Clasificacion   = "A",
-                FechaEstreno    = "4 Abr 2025",
-                Director        = "Denis Villeneuve",
-                Reparto         = "Timothée Chalamet, Zendaya, Florence Pugh",
-                Sinopsis        = "En un futuro cercano, una inteligencia artificial desarrolla conciencia propia y debe decidir entre la lealtad a sus creadores o la supervivencia de la humanidad.",
-                Salas           = "Salas 1, 3, 9",
-                Audio           = "Dolby Atmos, IMAX",
-                EsHoy           = true
+                Clasificacion = "A",
+                FechaEstreno = "2026/03/29",
+                Director = "Denis Villeneuve",
+                Reparto = "Timothée Chalamet, Zendaya, Florence Pugh",
+                Sinopsis = "En un futuro cercano, una inteligencia artificial desarrolla conciencia propia y debe decidir entre la lealtad a sus creadores o la supervivencia de la humanidad."
             },
-
-            // ── PRÓXIMAMENTE ────────────────────────────────────────────
             new Pelicula
             {
-                Titulo          = "El Rey León 2",
-                Emoji           = "🦁",
-                RutaPoster      = "#211A0A",
-                Calificacion    = 0,
-                NumResenas      = 0,
-                Generos         = ["Animación", "Familiar", "AA"],
+                Id = 5,
+                Titulo = "El Rey León 2",
+                RutaPoster = "#211A0A",
+                Generos = new[] { "Animación", "Familiar" },
                 DuracionMinutos = 105,
-                Clasificacion   = "AA",
-                FechaEstreno    = "25 Jul 2025",
-                Director        = "Barry Jenkins",
-                Reparto         = "Donald Glover, Beyoncé, Billy Eichner",
-                Sinopsis        = "Simba y Nala guían a la siguiente generación mientras una nueva amenaza surge en las Tierras del Recuerdo, poniendo a prueba el legado de Mufasa.",
-                Salas           = "Por confirmar",
-                Audio           = "Por confirmar",
-                EsHoy           = false,
-                FechaProxima    = "25 Jul"
+                Clasificacion = "AA",
+                FechaEstreno = "2026/06/10",
+                Director = "Barry Jenkins",
+                Reparto = "Donald Glover, Beyoncé, Billy Eichner",
+                Sinopsis = "Simba y Nala guían a la siguiente generación mientras una nueva amenaza surge en las Tierras del Recuerdo, poniendo a prueba el legado de Mufasa."
             },
             new Pelicula
             {
-                Titulo          = "Spider-Man: Nexus",
-                Emoji           = "🕷️",
-                RutaPoster      = "#180E22",
-                Calificacion    = 0,
-                NumResenas      = 0,
-                Generos         = ["Acción", "Superhéroes", "B15"],
+                Id = 6,
+                Titulo = "Spider-Man: Nexus",
+                RutaPoster = "#180E22",
+                Generos = new[] { "Acción", "Superhéroes" },
                 DuracionMinutos = 145,
-                Clasificacion   = "B15",
-                FechaEstreno    = "3 Ago 2025",
-                Director        = "Joaquim Dos Santos",
-                Reparto         = "Tom Holland, Zendaya, Andrew Garfield",
-                Sinopsis        = "Peter Parker se adentra en el Nexus cuántico para enfrentar una amenaza que podría colapsar todos los universos conocidos del multiverso Marvel.",
-                Salas           = "Por confirmar",
-                Audio           = "Dolby Atmos, IMAX",
-                EsHoy           = false,
-                FechaProxima    = "3 Ago"
+                Clasificacion = "B15",
+                FechaEstreno = "2026/06/12",
+                Director = "Joaquim Dos Santos",
+                Reparto = "Tom Holland, Zendaya, Andrew Garfield",
+                Sinopsis = "Peter Parker se adentra en el Nexus cuántico para enfrentar una amenaza que podría colapsar todos los universos conocidos del multiverso Marvel."
             },
             new Pelicula
             {
-                Titulo          = "Interestelar 2",
-                Emoji           = "🚀",
-                RutaPoster      = "#0C1620",
-                Calificacion    = 0,
-                NumResenas      = 0,
-                Generos         = ["Sci-Fi", "Drama", "A"],
+                Id = 7,
+                Titulo = "Interestelar 2",
+                RutaPoster = "#0C1620",
+                Generos = new[] { "Sci-Fi", "Drama" },
                 DuracionMinutos = 180,
-                Clasificacion   = "A",
-                FechaEstreno    = "15 Ago 2025",
-                Director        = "Christopher Nolan",
-                Reparto         = "Matthew McConaughey, Anne Hathaway, Fionn Whitehead",
-                Sinopsis        = "Décadas después de los eventos de la primera entrega, una nueva tripulación debe atravesar el agujero de gusano para rescatar a Cooper y completar la misión.",
-                Salas           = "Por confirmar",
-                Audio           = "Dolby Atmos, IMAX",
-                EsHoy           = false,
-                FechaProxima    = "15 Ago"
+                Clasificacion = "A",
+                FechaEstreno = "2026/07/08",
+                Director = "Christopher Nolan",
+                Reparto = "Matthew McConaughey, Anne Hathaway, Fionn Whitehead",
+                Sinopsis = "Décadas después de los eventos de la primera entrega, una nueva tripulación debe atravesar el agujero de gusano para rescatar a Cooper y completar la misión."
             },
             new Pelicula
             {
-                Titulo          = "Dune: Parte III",
-                Emoji           = "🧙",
-                RutaPoster      = "#201808",
-                Calificacion    = 0,
-                NumResenas      = 0,
-                Generos         = ["Aventura", "Sci-Fi", "B15"],
+                Id = 8,
+                Titulo = "Dune: Parte III",
+                RutaPoster = "#201808",
+                Generos = new[] { "Aventura", "Sci-Fi" },
                 DuracionMinutos = 160,
-                Clasificacion   = "B15",
-                FechaEstreno    = "22 Ago 2025",
-                Director        = "Denis Villeneuve",
-                Reparto         = "Timothée Chalamet, Zendaya, Austin Butler",
-                Sinopsis        = "Paul Atreides, convertido en el mesías Muad'Dib, enfrenta las consecuencias de su ascenso al poder mientras el universo se desmorona a su alrededor.",
-                Salas           = "Por confirmar",
-                Audio           = "Dolby Atmos, IMAX",
-                EsHoy           = false,
-                FechaProxima    = "22 Ago"
-            },
+                Clasificacion = "B15",
+                FechaEstreno = "2026/08/28",
+                Director = "Denis Villeneuve",
+                Reparto = "Timothée Chalamet, Zendaya, Austin Butler",
+                Sinopsis = "Paul Atreides, convertido en el mesías Muad'Dib, enfrenta las consecuencias de su ascenso al poder mientras el universo se desmorona a su alrededor."
+            }
         };
+        public static void GuardarPeliculas()
+        {
+            string ruta = Path.Combine(AppContext.BaseDirectory, "Data", "peliculas.json");
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+            string json = JsonSerializer.Serialize(Todas, options);
+            Directory.CreateDirectory(Path.GetDirectoryName(ruta)!);
+            File.WriteAllText(ruta, json); 
+        }
 
-        // Búsqueda rápida por título
-        public static Pelicula? GetByTitulo(string titulo)
-            => Todas.Find(p => p.Titulo == titulo);
+        public static List<Pelicula> CargarPeliculas()
+        {
+            string ruta = Path.Combine(AppContext.BaseDirectory, "Data", "peliculas.json");
+            if (!File.Exists(ruta))
+                return new List<Pelicula>();
+            string json = File.ReadAllText(ruta);
+            var peliculas = JsonSerializer.Deserialize<List<Pelicula>>(json);
+            return peliculas ?? new List<Pelicula>();
+        }
+        
+        public static Pelicula? GetById(int id)
+        {
+            var peliculas = CargarPeliculas();
+            return peliculas.Find(p => p.Id == id);
+        }
+
     }
 }
