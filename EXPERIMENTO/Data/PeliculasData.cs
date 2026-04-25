@@ -125,7 +125,7 @@ namespace EXPERIMENTO.Data
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
             Directory.CreateDirectory(Path.GetDirectoryName(ruta)!);
-            File.WriteAllText(ruta, JsonSerializer.Serialize(Todas, options)); ; 
+            File.WriteAllText(ruta, JsonSerializer.Serialize(Todas, options)); ;
         }
 
         public static List<Pelicula> CargarPeliculas()
@@ -137,10 +137,10 @@ namespace EXPERIMENTO.Data
             var peliculas = JsonSerializer.Deserialize<List<Pelicula>>(json);
             return JsonSerializer.Deserialize<List<Pelicula>>(json) ?? Todas;
         }
-        
+
         public static Pelicula? GetById(int id)
             => Todas.Find(p => p.Id == id);
-        
+
 
     }
 }
