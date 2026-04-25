@@ -14,106 +14,106 @@ namespace EXPERIMENTO.Data
             new Pelicula
             {
                 Id = 1,
-                Titulo = "Scream 7",
-                RutaPoster = "// ms-appx:///Assets/Posters/scream7",
-                Generos = new[] { "Terror", "Slasher" },
-                DuracionMinutos = 114,
-                Clasificacion = "B15",
+                Titulo = "La Princesa Mononoke",
+                RutaPoster = "ms-appx:///Assets/Posters/Princesa_Mononoke.jpg",
+                Generos = new[] { "Fantasía", "Anime", "Cine Familiar" },
+                DuracionMinutos = 133,
+                Clasificacion = "AA",
                 FechaEstreno = "2026/04/12",
-                Director = "Christopher Landon",
-                Reparto = "Melissa Barrera, Jenna Ortega",
-                Sinopsis = "La pandilla de Woodsboro enfrenta a un Ghostface más despiadado que nunca, en la entrega más sangrienta de la saga."
+                Director = "Hayao Miyazaki",
+                Reparto = "Akihiro Miwa, Yuko Tanaka",
+                Sinopsis = "Un príncipe se ve involucrado en un conflicto entre una princesa del bosque y el abuso de la mecanización."
             },
             new Pelicula
             {
                 Id = 2,
-                Titulo = "Frankenstein",
-                RutaPoster = "#0F2E0F",
-                Generos = new[] { "Drama", "Terror" },
-                DuracionMinutos = 150,
-                Clasificacion = "B15",
-                FechaEstreno = "2026/04/04",
-                Director = "Guillermo del Toro",
-                Reparto = "Oscar Isaac, Mia Goth, Andrew Scott",
-                Sinopsis = "Una nueva visión del clásico de Mary Shelley. El doctor Frankenstein lleva su obsesión por vencer a la muerte más allá de todo límite ético."
+                Titulo = "Super Mario Galaxy",
+                RutaPoster = "ms-appx:///Assets/Posters/SMG.jpg",
+                Generos = new[] { "Infantil", "Aventura" },
+                DuracionMinutos = 98,
+                Clasificacion = "AA",
+                FechaEstreno = "2026/04/01",
+                Director = "Michael Jelenic",
+                Reparto = "Brie Larson, Jack Black, Chriss Pratt",
+                Sinopsis = "Mario viaja por el espacio, explorando pequeños planetas con gravedad propia para rescatar a la Princesa Peach de Bowser, quien busca gobernar el universo."
             },
             new Pelicula
             {
                 Id = 3,
-                Titulo = "Cumbres Borrascosas",
-                RutaPoster = "#10102E",
-                Generos = new[] { "Romance", "Drama", "B15" },
-                DuracionMinutos = 136,
+                Titulo = "Whiplash",
+                RutaPoster = "ms-appx:///Assets/Posters/whiplash.jpg",
+                Generos = new[] { "Independiente", "Drama", "B15" },
+                DuracionMinutos = 106,
                 Clasificacion = "B15",
                 FechaEstreno = "2026/04/18",
-                Director = "Emerald Fennell",
-                Reparto = "Jacob Elordi, Margot Robbie",
-                Sinopsis = "La tempestuosa historia de amor entre Heathcliff y Catherine cobra vida en esta adaptación visualmente deslumbrante del clásico de Emily Brontë."
+                Director = "Damien Chazelle",
+                Reparto = "Miles Teller, J. K. Simmons",
+                Sinopsis = "Andrew Neiman es un joven y ambicioso baterista de jazz. Marcado por el fracaso de la carrera literaria de su padre, está obsesionado con alcanzar la cima dentro del elitista conservatorio de música de la Costa Este en el que estudia."
             },
             new Pelicula
             {
                 Id = 4,
-                Titulo = "Proyecto Génesis",
-                RutaPoster = "#1E1E0A",
+                Titulo = "Akira",
+                RutaPoster = "ms-appx:///Assets/Posters/akira.jpg",
                 Generos = new[] { "Sci-Fi", "Acción" },
-                DuracionMinutos = 128,
-                Clasificacion = "A",
+                DuracionMinutos = 124,
+                Clasificacion = "R",
                 FechaEstreno = "2026/03/29",
-                Director = "Denis Villeneuve",
-                Reparto = "Timothée Chalamet, Zendaya, Florence Pugh",
-                Sinopsis = "En un futuro cercano, una inteligencia artificial desarrolla conciencia propia y debe decidir entre la lealtad a sus creadores o la supervivencia de la humanidad."
+                Director = "Katsuhiro Ôtomo",
+                Reparto = "Johnny Yong Bosch, Joshua Seth, Simon Prescott",
+                Sinopsis = "Un joven telépata deambula por las calles de Tokio al darse cuenta de que los poderes que posee son asombrosos."
             },
             new Pelicula
             {
                 Id = 5,
-                Titulo = "El Rey León 2",
-                RutaPoster = "#211A0A",
-                Generos = new[] { "Animación", "Familiar" },
-                DuracionMinutos = 105,
+                Titulo = "Avatar The Last Airbender",
+                RutaPoster = "ms-appx:///Assets/Posters/Avatar.jpg",
+                Generos = new[] { "Animación", "Familiar", "Fantasía" },
+                DuracionMinutos = 98,
                 Clasificacion = "AA",
                 FechaEstreno = "2026/06/10",
-                Director = "Barry Jenkins",
-                Reparto = "Donald Glover, Beyoncé, Billy Eichner",
-                Sinopsis = "Simba y Nala guían a la siguiente generación mientras una nueva amenaza surge en las Tierras del Recuerdo, poniendo a prueba el legado de Mufasa."
+                Director = "Lauren Montgomery",
+                Reparto = "Eric Nam, Dave Bautista, Steven Yeun",
+                Sinopsis = "Avatar Aang, el último Airbender del mundo, se entera de un antiguo poder que podría salvar a su cultura de la extinción. Con la ayuda de sus amigos, se embarca en una búsqueda global para encontrarlo antes de que caiga en las manos equivocadas."
             },
             new Pelicula
             {
                 Id = 6,
-                Titulo = "Spider-Man: Nexus",
-                RutaPoster = "#180E22",
-                Generos = new[] { "Acción", "Superhéroes" },
-                DuracionMinutos = 145,
-                Clasificacion = "B15",
+                Titulo = "Baby Driver",
+                RutaPoster = "ms-appx:///Assets/Posters/baby_driver.jpg",
+                Generos = new[] { "Acción", "Crimen" },
+                DuracionMinutos = 115,
+                Clasificacion = "R",
                 FechaEstreno = "2026/06/12",
-                Director = "Joaquim Dos Santos",
-                Reparto = "Tom Holland, Zendaya, Andrew Garfield",
-                Sinopsis = "Peter Parker se adentra en el Nexus cuántico para enfrentar una amenaza que podría colapsar todos los universos conocidos del multiverso Marvel."
+                Director = "Edgar Wright",
+                Reparto = "Lily James, Jon Hamm, Kevin Spacey, Jamie Foxx",
+                Sinopsis = "Baby es un chofer especializado en fugas que, enamorado, pretende dejar la vida criminal y empezar de cero con la mujer que ama. Cuando el jefe de una banda de gánsteres le obliga a trabajar para él y la operación fracasa, su vida y la de su chica pasan a estar en peligro."
             },
             new Pelicula
             {
                 Id = 7,
-                Titulo = "Interestelar 2",
-                RutaPoster = "#0C1620",
-                Generos = new[] { "Sci-Fi", "Drama" },
-                DuracionMinutos = 180,
+                Titulo = "Backrooms",
+                RutaPoster = "ms-appx:///Assets/Posters/backrooms.jpg",
+                Generos = new[] { "Sci-Fi", "Terror" },
+                DuracionMinutos = 105,
                 Clasificacion = "A",
                 FechaEstreno = "2026/07/08",
-                Director = "Christopher Nolan",
-                Reparto = "Matthew McConaughey, Anne Hathaway, Fionn Whitehead",
-                Sinopsis = "Décadas después de los eventos de la primera entrega, una nueva tripulación debe atravesar el agujero de gusano para rescatar a Cooper y completar la misión."
+                Director = "Kane Parsons",
+                Reparto = "Chiwetel Ejiofor, Renate Reinsve, Finn Bennett",
+                Sinopsis = "La historia de una terapeuta que se adentra en una peligrosa dimensión paralela, conocida como \"los Backrooms\", para salvar a su paciente desaparecido."
             },
             new Pelicula
             {
                 Id = 8,
-                Titulo = "Dune: Parte III",
-                RutaPoster = "#201808",
-                Generos = new[] { "Aventura", "Sci-Fi" },
-                DuracionMinutos = 160,
+                Titulo = "Before Sunrise",
+                RutaPoster = "ms-appx:///Assets/Posters/before_sunrise.jpg",
+                Generos = new[] { "Romance", "Drama" },
+                DuracionMinutos = 101,
                 Clasificacion = "B15",
                 FechaEstreno = "2026/08/28",
-                Director = "Denis Villeneuve",
-                Reparto = "Timothée Chalamet, Zendaya, Austin Butler",
-                Sinopsis = "Paul Atreides, convertido en el mesías Muad'Dib, enfrenta las consecuencias de su ascenso al poder mientras el universo se desmorona a su alrededor."
+                Director = "Richar Linklater",
+                Reparto = "Ethan Hawke, Julie Delpy",
+                Sinopsis = "Dos viajeros, un joven estadounidense y una mujer francesa, se conocen en un tren y pasan un día romántico en Viena, Austria."
             }
         };
         public static void GuardarPeliculas()
@@ -124,26 +124,23 @@ namespace EXPERIMENTO.Data
                 WriteIndented = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
             };
-            string json = JsonSerializer.Serialize(Todas, options);
             Directory.CreateDirectory(Path.GetDirectoryName(ruta)!);
-            File.WriteAllText(ruta, json); 
+            File.WriteAllText(ruta, JsonSerializer.Serialize(Todas, options)); ; 
         }
 
         public static List<Pelicula> CargarPeliculas()
         {
             string ruta = Path.Combine(AppContext.BaseDirectory, "Data", "peliculas.json");
             if (!File.Exists(ruta))
-                return new List<Pelicula>();
+                return Todas;
             string json = File.ReadAllText(ruta);
             var peliculas = JsonSerializer.Deserialize<List<Pelicula>>(json);
-            return peliculas ?? new List<Pelicula>();
+            return JsonSerializer.Deserialize<List<Pelicula>>(json) ?? Todas;
         }
         
         public static Pelicula? GetById(int id)
-        {
-            var peliculas = CargarPeliculas();
-            return peliculas.Find(p => p.Id == id);
-        }
+            => Todas.Find(p => p.Id == id);
+        
 
     }
 }

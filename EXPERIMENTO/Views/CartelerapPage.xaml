@@ -39,22 +39,52 @@
                     <DataTemplate x:DataType="Models:Pelicula">
                         <Button Click="MovieCard_Click"
                                 Tag="{x:Bind Id}"
+                                HorizontalContentAlignment="Stretch"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Padding="0"
+                                Padding="8"
                                 CornerRadius="10">
-                            <StackPanel Margin="10">
-                                <TextBlock Text="{x:Bind Titulo}" 
-                                           FontSize="14" 
-                                           FontWeight="SemiBold" 
-                                           Foreground="White"/>
-                                <TextBlock Text="{x:Bind Director}" 
-                                           FontSize="11" 
-                                           Foreground="Gray"/>
-                                <TextBlock Text="{x:Bind FechaEstreno}" 
-                                           FontSize="11" 
-                                           Foreground="LightGray"/>
-                            </StackPanel>
+                            <Border CornerRadius="10"
+                                    Background="#1A1A1A"
+                                    BorderBrush="#2A2A2A"
+                                    BorderThickness="1"
+                                    Width="220">
+                                <StackPanel>
+                                    <!-- Poster -->
+                                    <Border Height="300"
+                                            CornerRadius="10,10,0,0"
+
+                                            Background="#111111">
+                                        <Grid>
+                                            <TextBlock Text="🎬"
+                                                       FontSize="52"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                            <Image Source="{x:Bind RutaPoster}"
+                                                   Stretch="UniformToFill" />
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Info -->
+                                    <StackPanel Padding="14,12,14,14" Spacing="6">
+                                        <TextBlock Text="{x:Bind Titulo}"
+                                                   FontSize="14"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="White"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <TextBlock Text="{x:Bind DuracionMinutos}"
+                                                       FontSize="11"
+                                                       Foreground="#5A5A5A" />
+                                            <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
+                                                <TextBlock Text="{x:Bind Clasificacion}"
+                                                           FontSize="10"
+                                                           Foreground="#8A8A8A" />
+                                            </Border>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -79,22 +109,51 @@
                     <DataTemplate x:DataType="Models:Pelicula">
                         <Button Click="MovieCard_Click"
                                 Tag="{x:Bind Id}"
+                                HorizontalContentAlignment="Stretch"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Padding="0"
+                                Padding="8"
                                 CornerRadius="10">
-                            <StackPanel Margin="10">
-                                <TextBlock Text="{x:Bind Titulo}" 
-                                           FontSize="14" 
-                                           FontWeight="SemiBold" 
-                                           Foreground="White"/>
-                                <TextBlock Text="{x:Bind Director}" 
-                                           FontSize="11" 
-                                           Foreground="Gray"/>
-                                <TextBlock Text="{x:Bind FechaEstreno}" 
-                                           FontSize="11" 
-                                           Foreground="LightGray"/>
-                            </StackPanel>
+                            <Border CornerRadius="10"
+                                    Background="#1A1A1A"
+                                    BorderBrush="#2A2A2A"
+                                    BorderThickness="1"
+                                    Width="220">
+                                <StackPanel>
+                                    <!-- Poster -->
+                                    <Border Height="300"
+                                            CornerRadius="10,10,0,0"
+                                            Background="#111111">
+                                        <Grid>
+                                            <TextBlock Text="🎬"
+                                                       FontSize="52"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                            <Image Source="{x:Bind RutaPoster}"
+                                                   Stretch="UniformToFill" />
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Info -->
+                                    <StackPanel Padding="14,12,14,14" Spacing="6">
+                                        <TextBlock Text="{x:Bind Titulo}"
+                                                   FontSize="14"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="White"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <TextBlock Text="{x:Bind FechaEstreno}"
+                                                       FontSize="11"
+                                                       Foreground="#F5C842" />
+                                            <Border Background="#2A2A2A" CornerRadius="4" Padding="6,2">
+                                                <TextBlock Text="{x:Bind Clasificacion}"
+                                                           FontSize="10"
+                                                           Foreground="#8A8A8A" />
+                                            </Border>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

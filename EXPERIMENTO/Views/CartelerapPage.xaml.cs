@@ -21,7 +21,7 @@ namespace EXPERIMENTO.Views
             }
 
             // Ahora sí cargar películas
-            var peliculas = PeliculasData.CargarPeliculas();
+            var peliculas = PeliculasData.Todas;
             var hoy = DateTime.Today;
 
             ItemsEnCartelera.ItemsSource = peliculas
