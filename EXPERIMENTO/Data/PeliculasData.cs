@@ -22,7 +22,9 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/04/12",
                 Director = "Hayao Miyazaki",
                 Reparto = "Akihiro Miwa, Yuko Tanaka",
-                Sinopsis = "Un príncipe se ve involucrado en un conflicto entre una princesa del bosque y el abuso de la mecanización."
+                Sinopsis = "Un príncipe se ve involucrado en un conflicto entre una princesa del bosque y el abuso de la mecanización.",
+                Calificacion = 8.7
+
             },
             new Pelicula
             {
@@ -35,7 +37,8 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/04/01",
                 Director = "Michael Jelenic",
                 Reparto = "Brie Larson, Jack Black, Chriss Pratt",
-                Sinopsis = "Mario viaja por el espacio, explorando pequeños planetas con gravedad propia para rescatar a la Princesa Peach de Bowser, quien busca gobernar el universo."
+                Sinopsis = "Mario viaja por el espacio, explorando pequeños planetas con gravedad propia para rescatar a la Princesa Peach de Bowser, quien busca gobernar el universo.",
+                Calificacion = 6.7
             },
             new Pelicula
             {
@@ -48,7 +51,8 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/04/18",
                 Director = "Damien Chazelle",
                 Reparto = "Miles Teller, J. K. Simmons",
-                Sinopsis = "Andrew Neiman es un joven y ambicioso baterista de jazz. Marcado por el fracaso de la carrera literaria de su padre, está obsesionado con alcanzar la cima dentro del elitista conservatorio de música de la Costa Este en el que estudia."
+                Sinopsis = "Andrew Neiman es un joven y ambicioso baterista de jazz. Marcado por el fracaso de la carrera literaria de su padre, está obsesionado con alcanzar la cima dentro del elitista conservatorio de música de la Costa Este en el que estudia.",
+                Calificacion = 9.2
             },
             new Pelicula
             {
@@ -61,7 +65,8 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/03/29",
                 Director = "Katsuhiro Ôtomo",
                 Reparto = "Johnny Yong Bosch, Joshua Seth, Simon Prescott",
-                Sinopsis = "Un joven telépata deambula por las calles de Tokio al darse cuenta de que los poderes que posee son asombrosos."
+                Sinopsis = "Un joven telépata deambula por las calles de Tokio al darse cuenta de que los poderes que posee son asombrosos.",
+                Calificacion = 8.8
             },
             new Pelicula
             {

@@ -214,25 +214,6 @@
                                    LineHeight="22"
                                    Margin="0,0,0,24" />
 
-                        <!-- Chips Salas / Audio -->
-                        <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,32">
-                            <Border Background="#1E1E1E" BorderBrush="#2A2A2A"
-                                    BorderThickness="1" CornerRadius="20" Padding="14,7">
-                                <StackPanel Orientation="Horizontal" Spacing="7">
-                                    <TextBlock Text="🎭" FontSize="12" VerticalAlignment="Center" />
-                                    <TextBlock x:Name="SalasText" FontSize="12"
-                                               Foreground="#C0C0C0" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Border>
-                            <Border Background="#1E1E1E" BorderBrush="#2A2A2A"
-                                    BorderThickness="1" CornerRadius="20" Padding="14,7">
-                                <StackPanel Orientation="Horizontal" Spacing="7">
-                                    <TextBlock Text="🔊" FontSize="12" VerticalAlignment="Center" />
-                                    <TextBlock x:Name="AudioText" FontSize="12"
-                                               Foreground="#C0C0C0" VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Border>
-                        </StackPanel>
 
                         <!-- Botones -->
                         <StackPanel Orientation="Horizontal" Spacing="12">

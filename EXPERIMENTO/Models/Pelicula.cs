@@ -1,3 +1,5 @@
+using System;
+
 namespace EXPERIMENTO.Models
 {
     public class Pelicula
@@ -8,9 +10,13 @@ namespace EXPERIMENTO.Models
         public string[] Generos { get; set; } = [];
         public int DuracionMinutos { get; set; } = 0;
         public string Clasificacion { get; set; } = "";
-        public string FechaEstreno { get; set; } = "";
+        public string FechaEstreno { get; set; } = ""; // IMPORTANTE formato yyyy-MM-dd
         public string Director { get; set; } = "";
         public string Reparto { get; set; } = "";
         public string Sinopsis { get; set; } = "";
+        public double Calificacion { get; set; } = 0.0;
+
+        public bool EsHoy => DateTime.TryParse(FechaEstreno, out var fecha) && fecha <= DateTime.Today;
+
     }
 }
