@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="EXPERIMENTO.Views.HorarioPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EXPERIMENTO.Views"
+    Background="Transparent">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <!-- STEPPER — paso 2 activo                               -->
+
+        <Border Grid.Row="0"
+                Background="#141414"
+                BorderBrush="#2A2A2A"
+                BorderThickness="0,0,0,1">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Paso 1: Detalle (completado) -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal"
+                            HorizontalAlignment="Center" Spacing="10">
+                    <Border Width="26" Height="26" CornerRadius="13"
+                            Background="#3A3A3A">
+                        <TextBlock Text="✓" FontSize="12" FontWeight="Bold"
+                                   Foreground="#F5C842"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock Text="Detalle" FontSize="13"
+                               Foreground="#5A5A5A" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Paso 2: Horario (activo) -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal"
+                            HorizontalAlignment="Center" Spacing="10">
+                    <Border Width="26" Height="26" CornerRadius="13" Background="#F5C842">
+                        <TextBlock Text="2" FontSize="12" FontWeight="Bold"
+                                   Foreground="#0D0D0D"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock Text="Horario" FontSize="13" FontWeight="SemiBold"
+                               Foreground="#F5C842" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Paso 3: Asientos -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal"
+                            HorizontalAlignment="Center" Spacing="10">
+                    <Border Width="26" Height="26" CornerRadius="13"
+                            Background="Transparent" BorderBrush="#3A3A3A" BorderThickness="1">
+                        <TextBlock Text="3" FontSize="12" Foreground="#5A5A5A"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock Text="Asientos" FontSize="13" Foreground="#5A5A5A"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Paso 4: Confirmar -->
+                <StackPanel Grid.Column="3" Orientation="Horizontal"
+                            HorizontalAlignment="Center" Spacing="10">
+                    <Border Width="26" Height="26" CornerRadius="13"
+                            Background="Transparent" BorderBrush="#3A3A3A" BorderThickness="1">
+                        <TextBlock Text="4" FontSize="12" Foreground="#5A5A5A"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock Text="Confirmar" FontSize="13" Foreground="#5A5A5A"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENIDO                                             -->
+
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Padding="36,28,36,36" Spacing="0">
+
+                <!-- Botón volver -->
+                <Button x:Name="BtnVolver"
+                        Click="BtnVolver_Click"
+                        Background="Transparent"
+                        Foreground="#8A8A8A"
+                        BorderThickness="0"
+                        Padding="0"
+                        Margin="0,0,0,24"
+                        HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="←" FontSize="14" VerticalAlignment="Center" />
+                        <TextBlock Text="Volver a detalles" FontSize="13"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+
+                <!-- Encabezado -->
+                <TextBlock Text="Selecciona un horario"
+                           FontSize="24" FontWeight="Bold"
+                           Foreground="White" />
+                <TextBlock x:Name="SubtituloText"
+                           FontSize="13" Foreground="#6A6A6A"
+                           Margin="0,4,0,32" />
+
+                <!-- Lista de grupos por fecha — se llena desde code-behind -->
+                <StackPanel x:Name="GruposPanel" Spacing="32" />
+
+                <!-- Mensaje si no hay funciones -->
+                <StackPanel x:Name="SinFuncionesPanel"
+                            Visibility="Collapsed"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Spacing="12"
+                            Margin="0,60,0,0">
+                    <TextBlock Text="🎭" FontSize="48" HorizontalAlignment="Center" />
+                    <TextBlock Text="No hay funciones disponibles"
+                               FontSize="16" FontWeight="SemiBold"
+                               Foreground="White" HorizontalAlignment="Center" />
+                    <TextBlock Text="Esta película no tiene funciones programadas por el momento"
+                               FontSize="13" Foreground="#5A5A5A"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

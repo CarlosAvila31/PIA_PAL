@@ -30,8 +30,11 @@ namespace EXPERIMENTO.Views
                 CargarDatos(peli);
         }
 
+        private Pelicula? _peliculaActual;
         private void CargarDatos(Pelicula p)
         {
+            _peliculaActual = p;
+
             // Poster
             PosterImage.Opacity = 0; // oculto hasta que cargue bien
 
@@ -154,7 +157,8 @@ namespace EXPERIMENTO.Views
 
         private void BtnComprar_Click(object sender, RoutedEventArgs e)
         {
-            // Aquí navegaremos a HorarioPage cuando esté lista
+            if (_peliculaActual != null)
+                Frame.Navigate(typeof(HorarioPage), _peliculaActual.Id);
         }
 
         // ── Handlers para imagen ──
