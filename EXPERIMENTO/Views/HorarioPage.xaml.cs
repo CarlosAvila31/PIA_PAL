@@ -13,6 +13,8 @@ namespace EXPERIMENTO.Views
 {
     public sealed partial class HorarioPage : Page
     {
+        private List<GrupoFunciones> _gruposFunciones = new();
+        private StackPanel _horariosPanel = new();
         public HorarioPage()
         {
             InitializeComponent();
@@ -38,88 +40,182 @@ namespace EXPERIMENTO.Views
                 return;
             }
 
+            _gruposFunciones = grupos;
+
+            // PANEL FECHAS
+            var fechasPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                Spacing = 12
+            };
+
+            // PANEL HORARIOS
+            _horariosPanel = new StackPanel
+            {
+                Spacing = 28,
+                Margin = new Thickness(0, 24, 0, 0)
+            };
+
             foreach (var grupo in grupos)
-                GruposPanel.Children.Add(CrearGrupo(grupo));
+            {
+                fechasPanel.Children.Add(CrearBotonFecha(grupo));
+            }
+
+            // Agrega primero las fechas
+            GruposPanel.Children.Add(fechasPanel);
+
+            // Luego horarios
+            GruposPanel.Children.Add(_horariosPanel);
+
+            // Mostrar automáticamente el primero
+            MostrarHorarios(grupos[0]);
         }
 
         // ── Crea la sección de un día con sus botones de horario ─────────────
         private StackPanel CrearGrupo(GrupoFunciones grupo)
         {
-            var panel = new StackPanel { Spacing = 12 };
+            var panel = new StackPanel
+            {
+                Spacing = 18
+            };
 
-            // Encabezado del día
+            // Título
             panel.Children.Add(new TextBlock
             {
                 Text = grupo.FechaFormateada,
-                FontSize = 14,
-                FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
+                FontSize = 20,
+                FontWeight = Microsoft.UI.Text.FontWeights.Bold,
                 Foreground = new SolidColorBrush(Colors.White)
             });
 
-            // Fila de botones de horario
+            // Wrap visual
             var fila = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
-                Spacing = 10
+                Spacing = 14
             };
 
             foreach (var funcion in grupo.Funciones)
+            {
                 fila.Children.Add(CrearBotonFuncion(funcion));
+            }
 
             panel.Children.Add(fila);
+
             return panel;
+        }
+
+        private Button CrearBotonFecha(GrupoFunciones grupo)
+        {
+            var btn = new Button
+            {
+                Content = new StackPanel
+                {
+                    Spacing = 2,
+                    Children =
+            {
+                new TextBlock
+                {
+                    Text = grupo.Fecha.ToString("ddd").ToUpper(),
+                    FontSize = 11,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Foreground = new SolidColorBrush(Colors.Black)
+                },
+
+                new TextBlock
+                {
+                    Text = grupo.Fecha.ToString("dd MMM").ToUpper(),
+                    FontSize = 13,
+                    FontWeight = Microsoft.UI.Text.FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    Foreground = new SolidColorBrush(Colors.Black)
+                }
+            }
+                },
+
+                Background = new SolidColorBrush(Color.FromArgb(255, 245, 200, 66)),
+                BorderThickness = new Thickness(0),
+                CornerRadius = new CornerRadius(12),
+                Padding = new Thickness(18, 10, 18, 10),
+                Tag = grupo
+            };
+
+            btn.Click += BtnFecha_Click;
+
+            return btn;
+        }
+
+        private void BtnFecha_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn &&
+                btn.Tag is GrupoFunciones grupo)
+            {
+                MostrarHorarios(grupo);
+            }
+        }
+
+        private void MostrarHorarios(GrupoFunciones grupo)
+        {
+            _horariosPanel.Children.Clear();
+
+            _horariosPanel.Children.Add(CrearGrupo(grupo));
         }
 
         // ── Crea un botón individual de función ──────────────────────────────
         private Button CrearBotonFuncion(Funcion funcion)
         {
-            // Contenido del botón: hora arriba, sala + formato abajo
-            var contenido = new StackPanel { Spacing = 4, Padding = new Thickness(16, 12, 16, 12) };
+            var contenido = new StackPanel
+            {
+                Spacing = 6,
+                Padding = new Thickness(18, 14, 18, 14)
+            };
 
             contenido.Children.Add(new TextBlock
             {
                 Text = funcion.HoraFormateada,
-                FontSize = 18,
-                FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
+                FontSize = 20,
+                FontWeight = Microsoft.UI.Text.FontWeights.Bold,
                 Foreground = new SolidColorBrush(Colors.White),
                 HorizontalAlignment = HorizontalAlignment.Center
+            });
+
+            contenido.Children.Add(new Border
+            {
+                Background = GetFormatoBrush(funcion.Formato),
+                CornerRadius = new CornerRadius(6),
+                Padding = new Thickness(8, 3, 8, 3),
+                HorizontalAlignment = HorizontalAlignment.Center,
+
+                Child = new TextBlock
+                {
+                    Text = funcion.Formato,
+                    FontSize = 10,
+                    FontWeight = Microsoft.UI.Text.FontWeights.Bold,
+                    Foreground = new SolidColorBrush(Colors.White)
+                }
             });
 
             contenido.Children.Add(new TextBlock
             {
                 Text = funcion.Sala,
                 FontSize = 11,
-                Foreground = new SolidColorBrush(Color.FromArgb(255, 138, 138, 138)),
+                Foreground = new SolidColorBrush(Color.FromArgb(255, 160, 160, 160)),
                 HorizontalAlignment = HorizontalAlignment.Center
             });
-
-            // Badge de formato (2D, 3D, IMAX, Dolby)
-            var badge = new Border
-            {
-                Background = GetFormatoBrush(funcion.Formato),
-                CornerRadius = new CornerRadius(4),
-                Padding = new Thickness(6, 2, 6, 2),
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Child = new TextBlock
-                {
-                    Text = funcion.Formato,
-                    FontSize = 10,
-                    FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
-                    Foreground = new SolidColorBrush(Color.FromArgb(255, 13, 13, 13))
-                }
-            };
-            contenido.Children.Add(badge);
 
             var btn = new Button
             {
                 Content = contenido,
                 Background = new SolidColorBrush(Color.FromArgb(255, 26, 26, 26)),
-                BorderBrush = new SolidColorBrush(Color.FromArgb(255, 42, 42, 42)),
+                BorderBrush = new SolidColorBrush(Color.FromArgb(255, 60, 60, 60)),
                 BorderThickness = new Thickness(1),
-                CornerRadius = new CornerRadius(10),
+                CornerRadius = new CornerRadius(14),
                 Padding = new Thickness(0),
+                MinWidth = 130,
+                MinHeight = 100,
                 Tag = funcion
             };
+
             btn.Click += BtnFuncion_Click;
 
             return btn;
