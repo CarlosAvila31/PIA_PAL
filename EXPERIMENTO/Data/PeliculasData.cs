@@ -54,7 +54,7 @@ namespace EXPERIMENTO.Data
                 Reparto = "Miles Teller, J. K. Simmons",
                 Sinopsis = "Andrew Neiman es un joven y ambicioso baterista de jazz. Marcado por el fracaso de la carrera literaria de su padre, está obsesionado con alcanzar la cima dentro del elitista conservatorio de música de la Costa Este en el que estudia.",
                 Calificacion = 9.2,
-                TrailerUrl = ""
+                TrailerUrl = "https://youtu.be/CX_F8BqNs8Y?si=Ox_bJo54AODWdxor"
             },
             new Pelicula
             {
@@ -69,7 +69,7 @@ namespace EXPERIMENTO.Data
                 Reparto = "Johnny Yong Bosch, Joshua Seth, Simon Prescott",
                 Sinopsis = "Un joven telépata deambula por las calles de Tokio al darse cuenta de que los poderes que posee son asombrosos.",
                 Calificacion = 8.8,
-                TrailerUrl = ""
+                TrailerUrl = "https://youtu.be/vvnNpjH93NU?si=iUKVGHCcmMkwuRMc"
             },
             new Pelicula
             {
@@ -84,8 +84,8 @@ namespace EXPERIMENTO.Data
                 Reparto = "Eric Nam, Dave Bautista, Steven Yeun",
                 Sinopsis = "Avatar Aang, el último Airbender del mundo, se entera de un antiguo poder que podría salvar a su cultura de la extinción. Con la ayuda de sus amigos, se embarca en una búsqueda global para encontrarlo antes de que caiga en las manos equivocadas.",
                 Calificacion = 0,
-                TrailerUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-            },
+                TrailerUrl = "https://youtu.be/_B_4Ryu3dwU?si=koyrwlhkdYZ9AGHc"
+            },  
             new Pelicula
             {
                 Id = 6,
@@ -99,7 +99,7 @@ namespace EXPERIMENTO.Data
                 Reparto = "Lily James, Jon Hamm, Kevin Spacey, Jamie Foxx",
                 Sinopsis = "Baby es un chofer especializado en fugas que, enamorado, pretende dejar la vida criminal y empezar de cero con la mujer que ama. Cuando el jefe de una banda de gánsteres le obliga a trabajar para él y la operación fracasa, su vida y la de su chica pasan a estar en peligro.",
                 Calificacion = 0,
-                TrailerUrl = "https://www.youtube.com/watch?v=2Vv-BfVoq4g"
+                TrailerUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             },
             new Pelicula
             {
@@ -114,7 +114,7 @@ namespace EXPERIMENTO.Data
                 Reparto = "Chiwetel Ejiofor, Renate Reinsve, Finn Bennett",
                 Sinopsis = "La historia de una terapeuta que se adentra en una peligrosa dimensión paralela, conocida como \"los Backrooms\", para salvar a su paciente desaparecido.",
                 Calificacion = 0,
-                TrailerUrl = ""
+                TrailerUrl = "https://youtu.be/0HjdiohVOik?si=2P4Fc3fpofPKLltl"
             },
             new Pelicula
             {
@@ -129,7 +129,7 @@ namespace EXPERIMENTO.Data
                 Reparto = "Ethan Hawke, Julie Delpy",
                 Sinopsis = "Dos viajeros, un joven estadounidense y una mujer francesa, se conocen en un tren y pasan un día romántico en Viena, Austria.",
                 Calificacion = 0,
-                TrailerUrl = ""
+                TrailerUrl = "https://youtu.be/6MUcuqbGTxc?si=2QRzwMVffYrp6Z-r"
             }
         };
         public static void GuardarPeliculas()
