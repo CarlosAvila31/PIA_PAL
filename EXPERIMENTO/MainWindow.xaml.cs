@@ -1,8 +1,12 @@
+using EXPERIMENTO.Views;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using System;
 using Windows.UI;
-using EXPERIMENTO.Views;
+using WinRT.Interop;
 
 namespace EXPERIMENTO
 {
@@ -13,6 +17,22 @@ namespace EXPERIMENTO
             InitializeComponent();
             // Navegar a Cartelera al iniciar
             ContentFrame.Navigate(typeof(CarteleraPage));
+            // Obtener ventana nativa
+            IntPtr hWnd = WindowNative.GetWindowHandle(this);
+
+            // Obtener ID de ventana
+            WindowId windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
+
+            // Obtener AppWindow
+            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+
+            // Pantalla completa
+            if (appWindow.Presenter is OverlappedPresenter presenter)
+            {
+                presenter.SetBorderAndTitleBar(false, false);
+            }
+
+            appWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
         }
 
         // ─── Helpers para manejar el estado "activo" del sidebar ───
@@ -25,12 +45,12 @@ namespace EXPERIMENTO
             BtnCartelera.Background = inactive;
             BtnMisBoletos.Background = inactive;
             BtnMiCuenta.Background = inactive;
-            BtnAjustes.Background = inactive;
+            BtnSalir.Background = inactive;
 
             SetButtonForeground(BtnCartelera, inactiveFg);
             SetButtonForeground(BtnMisBoletos, inactiveFg);
             SetButtonForeground(BtnMiCuenta, inactiveFg);
-            SetButtonForeground(BtnAjustes, inactiveFg);
+            SetButtonForeground(BtnSalir, inactiveFg);
         }
 
         private void SetActive(Button btn)
@@ -67,11 +87,9 @@ namespace EXPERIMENTO
             ContentFrame.Navigate(typeof(MiCuentaPage));
         }
 
-        private void BtnAjustes_Click(object sender, RoutedEventArgs e)
+        private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
-            SetAllInactive();
-            SetActive(BtnAjustes);
-            ContentFrame.Navigate(typeof(AjustesPage));
+            App.Current.Exit();
         }
     }
 }

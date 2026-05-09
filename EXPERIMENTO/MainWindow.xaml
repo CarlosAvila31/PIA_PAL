@@ -129,20 +129,21 @@
                         Padding="12,12,12,24"
                         BorderBrush="#2A2A2A"
                         BorderThickness="0,1,0,0">
-                    <Button x:Name="BtnAjustes"
+                    <Button x:Name="BtnSalir"
                             HorizontalAlignment="Stretch"
                             HorizontalContentAlignment="Left"
-                            Click="BtnAjustes_Click"
+                            Click="BtnSalir_Click"
                             Background="Transparent"
                             Foreground="#8A8A8A"
                             BorderThickness="0"
                             CornerRadius="8"
                             Padding="14,12">
                         <StackPanel Orientation="Horizontal" Spacing="12">
-                            <TextBlock Text="⚙️" FontSize="16" VerticalAlignment="Center" />
-                            <TextBlock Text="Ajustes"
-                                       FontSize="14"
-                                       VerticalAlignment="Center" />
+                            <TextBlock Text="Salir"
+                                       FontSize="22"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="ExtraBold"/>
                         </StackPanel>
                     </Button>
                 </Border>
