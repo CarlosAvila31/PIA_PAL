@@ -139,6 +139,7 @@
                             CornerRadius="8"
                             Padding="14,12">
                         <StackPanel Orientation="Horizontal" Spacing="12">
+                            <TextBlock Text="✖" FontSize="16" VerticalAlignment="Center" />
                             <TextBlock Text="Salir"
                                        FontSize="22"
                                        VerticalAlignment="Center"
