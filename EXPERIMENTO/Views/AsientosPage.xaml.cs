@@ -216,12 +216,14 @@ namespace EXPERIMENTO.Views
         {
             if (_funcion == null || _seleccionados.Count == 0) return;
 
-            // Navegar a ConfirmarPage pasando los datos de la compra
+            double total = _seleccionados.Count * PrecioPorAsiento;
+
+            // Solo navega, NO guarda aquí
             Frame.Navigate(typeof(ConfirmarPage), new DatosCompra
             {
                 Funcion = _funcion,
-                AsientosElegidos = new List<string>(_seleccionados),
-                Total = _seleccionados.Count * PrecioPorAsiento
+                AsientosElegidos = new System.Collections.Generic.List<string>(_seleccionados),
+                Total = total
             });
         }
 
@@ -239,4 +241,3 @@ namespace EXPERIMENTO.Views
         public double Total { get; set; }
     }
 }
-

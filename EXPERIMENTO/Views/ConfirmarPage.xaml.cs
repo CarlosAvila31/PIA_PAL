@@ -41,16 +41,27 @@ namespace EXPERIMENTO.Views
         {
             if (_datos == null) return;
 
-            // Marca los asientos como vendidos y persiste en JSON
+            // Marca asientos vendidos
             SalasData.MarcarVendidos(_datos.Funcion, _datos.AsientosElegidos);
 
+            // Guardar boleto solo aquí, cuando el usuario confirma de verdad
+            if (SessionService.EstaLogueado)
             {
-                Frame.Navigate(typeof(CarteleraPage));
-            };
+                var pelicula = PeliculasData.GetById(_datos.Funcion.PeliculaId);
+                SessionService.GuardarBoleto(new BoletoGuardado
+                {
+                    PeliculaTitulo = pelicula?.Titulo ?? "",
+                    FechaHora = _datos.Funcion.FechaHora.ToString("dddd d 'de' MMMM, HH:mm"),
+                    Sala = _datos.Funcion.Sala,
+                    Formato = _datos.Funcion.Formato,
+                    Asientos = new System.Collections.Generic.List<string>(_datos.AsientosElegidos),
+                    Total = _datos.Total,
+                    FechaCompra = System.DateTime.Now
+                });
+            }
+
+            Frame.Navigate(typeof(CarteleraPage));
         }
-
-
-
 
         // ── Volver: solo navega atrás, NO guarda nada ───────────────────────
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
