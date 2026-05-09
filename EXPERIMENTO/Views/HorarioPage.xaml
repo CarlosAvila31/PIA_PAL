@@ -43,7 +43,8 @@
                 <!-- Paso 2: Horario (activo) -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal"
                             HorizontalAlignment="Center" Spacing="10">
-                    <Border Width="26" Height="26" CornerRadius="13" Background="#F5C842">
+                    <Border Width="26" Height="26" CornerRadius="13" 
+                            Background="#F5C842">
                         <TextBlock Text="2" FontSize="12" FontWeight="Bold"
                                    Foreground="#0D0D0D"
                                    HorizontalAlignment="Center" VerticalAlignment="Center" />

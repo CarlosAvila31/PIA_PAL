@@ -24,36 +24,45 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <!-- Paso 1: Detalle (completado) -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal"
                             HorizontalAlignment="Center" Spacing="10">
-                    <Border Width="26" Height="26" CornerRadius="13" Background="#3A3A3A">
-                        <TextBlock Text="1" FontSize="12" FontWeight="Bold" Foreground="#F5C842"
+                    <Border Width="26" Height="26" CornerRadius="13"
+                            Background="#3A3A3A">
+                        <TextBlock Text="✓" FontSize="12" FontWeight="Bold"
+                                   Foreground="#F5C842"
                                    HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
-                    <TextBlock Text="Detalle" FontSize="13" Foreground="#5A5A5A"
-                               VerticalAlignment="Center" />
+                    <TextBlock Text="Detalle" FontSize="13"
+                               Foreground="#5A5A5A" VerticalAlignment="Center" />
                 </StackPanel>
 
+                <!-- Paso 2: Horario (completado) -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal"
                             HorizontalAlignment="Center" Spacing="10">
-                    <Border Width="26" Height="26" CornerRadius="13" Background="#3A3A3A">
-                        <TextBlock Text="2" FontSize="12" FontWeight="Bold" Foreground="#F5C842"
+                    <Border Width="26" Height="26" CornerRadius="13" 
+                            Background="#3A3A3A">
+                        <TextBlock Text="✓" FontSize="12" FontWeight="Bold"
+                                   Foreground="#F5C842"
                                    HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
-                    <TextBlock Text="Horario" FontSize="13" Foreground="#5A5A5A"
-                               VerticalAlignment="Center" />
+                    <TextBlock Text="Horario" FontSize="13" FontWeight="SemiBold"
+                               Foreground="#5A5A5A" VerticalAlignment="Center" />
                 </StackPanel>
 
+                <!-- Paso 3: Asientos (activo) -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal"
                             HorizontalAlignment="Center" Spacing="10">
-                    <Border Width="26" Height="26" CornerRadius="13" Background="#F5C842">
-                        <TextBlock Text="3" FontSize="12" FontWeight="Bold" Foreground="#0D0D0D"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Border Width="26" Height="26" CornerRadius="13"
+                            Background="#F5C842" BorderBrush="#3A3A3A" BorderThickness="1">
+                        <TextBlock Text="3" FontSize="12" FontWeight="Bold"
+                                   Foreground="#0D0D0D" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
-                    <TextBlock Text="Asientos" FontSize="13" FontWeight="SemiBold"
+                    <TextBlock Text="Asientos" FontSize="13"
                                Foreground="#F5C842" VerticalAlignment="Center" />
                 </StackPanel>
 
+                <!-- Paso 4: Confirmar -->
                 <StackPanel Grid.Column="3" Orientation="Horizontal"
                             HorizontalAlignment="Center" Spacing="10">
                     <Border Width="26" Height="26" CornerRadius="13"
