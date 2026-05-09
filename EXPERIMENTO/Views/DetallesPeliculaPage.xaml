@@ -227,7 +227,9 @@
                                     CornerRadius="8"
                                     Padding="28,12"
                                     FontSize="14" />
-                            <Button Content="▶  Trailer"
+                            <Button x:Name="BtnTrailer"
+                                    Content="▶  Trailer"
+                                    Click="BtnTrailer_Click"
                                     Background="#1E1E1E"
                                     Foreground="White"
                                     BorderBrush="#3A3A3A"

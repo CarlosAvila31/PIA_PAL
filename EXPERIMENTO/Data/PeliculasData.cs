@@ -23,8 +23,8 @@ namespace EXPERIMENTO.Data
                 Director = "Hayao Miyazaki",
                 Reparto = "Akihiro Miwa, Yuko Tanaka",
                 Sinopsis = "Un príncipe se ve involucrado en un conflicto entre una princesa del bosque y el abuso de la mecanización.",
-                Calificacion = 8.7
-
+                Calificacion = 8.7,
+                TrailerUrl = "https://www.youtube.com/watch?v=4OiMOHRDs14"
             },
             new Pelicula
             {
@@ -38,7 +38,8 @@ namespace EXPERIMENTO.Data
                 Director = "Michael Jelenic",
                 Reparto = "Brie Larson, Jack Black, Chriss Pratt",
                 Sinopsis = "Mario viaja por el espacio, explorando pequeños planetas con gravedad propia para rescatar a la Princesa Peach de Bowser, quien busca gobernar el universo.",
-                Calificacion = 6.7
+                Calificacion = 6.7,
+                TrailerUrl = "https://www.youtube.com/watch?v=ipzEY7c7it8"
             },
             new Pelicula
             {
@@ -52,7 +53,8 @@ namespace EXPERIMENTO.Data
                 Director = "Damien Chazelle",
                 Reparto = "Miles Teller, J. K. Simmons",
                 Sinopsis = "Andrew Neiman es un joven y ambicioso baterista de jazz. Marcado por el fracaso de la carrera literaria de su padre, está obsesionado con alcanzar la cima dentro del elitista conservatorio de música de la Costa Este en el que estudia.",
-                Calificacion = 9.2
+                Calificacion = 9.2,
+                TrailerUrl = ""
             },
             new Pelicula
             {
@@ -66,7 +68,8 @@ namespace EXPERIMENTO.Data
                 Director = "Katsuhiro Ôtomo",
                 Reparto = "Johnny Yong Bosch, Joshua Seth, Simon Prescott",
                 Sinopsis = "Un joven telépata deambula por las calles de Tokio al darse cuenta de que los poderes que posee son asombrosos.",
-                Calificacion = 8.8
+                Calificacion = 8.8,
+                TrailerUrl = ""
             },
             new Pelicula
             {
@@ -79,7 +82,9 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/06/10",
                 Director = "Lauren Montgomery",
                 Reparto = "Eric Nam, Dave Bautista, Steven Yeun",
-                Sinopsis = "Avatar Aang, el último Airbender del mundo, se entera de un antiguo poder que podría salvar a su cultura de la extinción. Con la ayuda de sus amigos, se embarca en una búsqueda global para encontrarlo antes de que caiga en las manos equivocadas."
+                Sinopsis = "Avatar Aang, el último Airbender del mundo, se entera de un antiguo poder que podría salvar a su cultura de la extinción. Con la ayuda de sus amigos, se embarca en una búsqueda global para encontrarlo antes de que caiga en las manos equivocadas.",
+                Calificacion = 0,
+                TrailerUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             },
             new Pelicula
             {
@@ -92,7 +97,9 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/06/12",
                 Director = "Edgar Wright",
                 Reparto = "Lily James, Jon Hamm, Kevin Spacey, Jamie Foxx",
-                Sinopsis = "Baby es un chofer especializado en fugas que, enamorado, pretende dejar la vida criminal y empezar de cero con la mujer que ama. Cuando el jefe de una banda de gánsteres le obliga a trabajar para él y la operación fracasa, su vida y la de su chica pasan a estar en peligro."
+                Sinopsis = "Baby es un chofer especializado en fugas que, enamorado, pretende dejar la vida criminal y empezar de cero con la mujer que ama. Cuando el jefe de una banda de gánsteres le obliga a trabajar para él y la operación fracasa, su vida y la de su chica pasan a estar en peligro.",
+                Calificacion = 0,
+                TrailerUrl = "https://www.youtube.com/watch?v=2Vv-BfVoq4g"
             },
             new Pelicula
             {
@@ -105,7 +112,9 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/07/08",
                 Director = "Kane Parsons",
                 Reparto = "Chiwetel Ejiofor, Renate Reinsve, Finn Bennett",
-                Sinopsis = "La historia de una terapeuta que se adentra en una peligrosa dimensión paralela, conocida como \"los Backrooms\", para salvar a su paciente desaparecido."
+                Sinopsis = "La historia de una terapeuta que se adentra en una peligrosa dimensión paralela, conocida como \"los Backrooms\", para salvar a su paciente desaparecido.",
+                Calificacion = 0,
+                TrailerUrl = ""
             },
             new Pelicula
             {
@@ -118,7 +127,9 @@ namespace EXPERIMENTO.Data
                 FechaEstreno = "2026/08/28",
                 Director = "Richar Linklater",
                 Reparto = "Ethan Hawke, Julie Delpy",
-                Sinopsis = "Dos viajeros, un joven estadounidense y una mujer francesa, se conocen en un tren y pasan un día romántico en Viena, Austria."
+                Sinopsis = "Dos viajeros, un joven estadounidense y una mujer francesa, se conocen en un tren y pasan un día romántico en Viena, Austria.",
+                Calificacion = 0,
+                TrailerUrl = ""
             }
         };
         public static void GuardarPeliculas()

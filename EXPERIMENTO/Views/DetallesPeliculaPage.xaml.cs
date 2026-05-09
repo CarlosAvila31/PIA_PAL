@@ -85,25 +85,22 @@ namespace EXPERIMENTO.Views
                     }
                 };
                 GenerosPanel.Children.Add(chip);
+            }
 
-                // ── Botón comprar ────────────────────────────────────────
-                // EsHoy se calcula automáticamente desde FechaEstreno en el modelo
-                if (p.EsHoy)
-                {
-                    BtnComprar.IsEnabled = true;
-                    BtnComprar.Content = "Comprar boletos";
-                    BtnComprar.Background = new SolidColorBrush(Color.FromArgb(255, 245, 200, 66));
-                    BtnComprar.Foreground = new SolidColorBrush(Color.FromArgb(255, 13, 13, 13));
-                }
-                else
-                {
-                    BtnComprar.IsEnabled = false;
-                    BtnComprar.Content = "Próximamente";
-                    BtnComprar.Background = new SolidColorBrush(Color.FromArgb(255, 30, 30, 30));
-                    BtnComprar.Foreground = new SolidColorBrush(Color.FromArgb(255, 90, 90, 90));
-                }
-
-
+            // ── Botón comprar ────────────────────────────────────────
+            if (p.EsHoy)
+            {
+                BtnComprar.IsEnabled = true;
+                BtnComprar.Content = "Comprar boletos";
+                BtnComprar.Background = new SolidColorBrush(Color.FromArgb(255, 245, 200, 66));
+                BtnComprar.Foreground = new SolidColorBrush(Color.FromArgb(255, 13, 13, 13));
+            }
+            else
+            {
+                BtnComprar.IsEnabled = false;
+                BtnComprar.Content = "Próximamente";
+                BtnComprar.Background = new SolidColorBrush(Color.FromArgb(255, 30, 30, 30));
+                BtnComprar.Foreground = new SolidColorBrush(Color.FromArgb(255, 90, 90, 90));
             }
 
             // Metadata
@@ -117,6 +114,18 @@ namespace EXPERIMENTO.Views
 
             // Sinopsis
             SinopsisText.Text = p.Sinopsis;
+
+            // Trailer
+            if (!string.IsNullOrEmpty(p.TrailerUrl))
+            {
+                BtnTrailer.IsEnabled = true;
+                BtnTrailer.Opacity = 1;
+            }
+            else
+            {
+                BtnTrailer.IsEnabled = false;
+                BtnTrailer.Opacity = 0.6;
+            }
         }
 
         // ── Convierte "#RRGGBB" a Windows.UI.Color ──
@@ -131,8 +140,6 @@ namespace EXPERIMENTO.Views
             );
         }
 
-       
-
         // ── Genera ★ sobre 5 estrellas a partir de calificación sobre 10 ──
         private static string GenerarEstrellas(double calificacion)
         {
@@ -146,8 +153,6 @@ namespace EXPERIMENTO.Views
             }
             return sb.ToString();
         }
-
-
 
         // ── Navegación ──
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
@@ -172,6 +177,23 @@ namespace EXPERIMENTO.Views
         {
             PosterImage.Opacity = 0;
             PosterEmoji.Visibility = Visibility.Visible;
+        }
+
+        private async void BtnTrailer_Click(object sender, RoutedEventArgs e)
+        {
+            if (_peliculaActual == null) return;
+            var url = _peliculaActual.TrailerUrl;
+            if (string.IsNullOrWhiteSpace(url)) return;
+
+            try
+            {
+                var uri = new Uri(url);
+                await Windows.System.Launcher.LaunchUriAsync(uri);
+            }
+            catch
+            {
+                // ignorar errores de launcher
+            }
         }
     }
 }
