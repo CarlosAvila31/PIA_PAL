@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Page
-    x:Class="EXPERIMENTO.Views.CartelerapPage"
+    x:Class="EXPERIMENTO.Views.CarteleraPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="using:EXPERIMENTO.Models"

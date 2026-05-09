@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace EXPERIMENTO.Views
 {
-    public sealed partial class CartelerapPage : Page
+    public sealed partial class CarteleraPage : Page
     {
-        public CartelerapPage()
+        public CarteleraPage()
         {
             InitializeComponent();
 

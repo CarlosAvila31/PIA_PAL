@@ -127,7 +127,6 @@ namespace EXPERIMENTO.Views
                 Padding = new Thickness(0),
                 CornerRadius = new CornerRadius(4),
                 Tag = codigo,
-                IsEnabled = !ocupado,
                 Content = new TextBlock
                 {
                     Text = "",   // sin texto, el color comunica el estado
@@ -135,10 +134,25 @@ namespace EXPERIMENTO.Views
                 }
             };
 
+            // Aplica estilo según estado
             AplicarEstilo(btn, ocupado ? EstadoAsiento.Ocupado : EstadoAsiento.Disponible);
-            btn.Click += Asiento_Click;
+
+            if (ocupado)
+            {
+                // Mantén el botón habilitado para que se vea rojo
+                btn.IsEnabled = true;
+                // Pero quita el evento de click para que no se pueda seleccionar
+                btn.Click -= Asiento_Click;
+            }
+            else
+            {
+                btn.IsEnabled = true;
+                btn.Click += Asiento_Click;
+            }
+
             return btn;
         }
+
 
         // ── Click en un asiento ──────────────────────────────────────────────
         private void Asiento_Click(object sender, RoutedEventArgs e)
@@ -166,18 +180,21 @@ namespace EXPERIMENTO.Views
             {
                 EstadoAsiento.Disponible => new SolidColorBrush(Color.FromArgb(255, 42, 42, 42)),
                 EstadoAsiento.Seleccionado => new SolidColorBrush(Color.FromArgb(255, 245, 200, 66)),
-                EstadoAsiento.Ocupado => new SolidColorBrush(Color.FromArgb(255, 26, 26, 26)),
+                EstadoAsiento.Ocupado => new SolidColorBrush(Color.FromArgb(255, 200, 50, 50)), // rojo
                 _ => new SolidColorBrush(Color.FromArgb(255, 42, 42, 42))
             };
+
             btn.BorderBrush = estado switch
             {
                 EstadoAsiento.Disponible => new SolidColorBrush(Color.FromArgb(255, 58, 58, 58)),
                 EstadoAsiento.Seleccionado => new SolidColorBrush(Color.FromArgb(255, 245, 200, 66)),
-                EstadoAsiento.Ocupado => new SolidColorBrush(Color.FromArgb(255, 34, 34, 34)),
+                EstadoAsiento.Ocupado => new SolidColorBrush(Color.FromArgb(255, 200, 50, 50)),
                 _ => new SolidColorBrush(Color.FromArgb(255, 58, 58, 58))
             };
+
             btn.BorderThickness = new Thickness(1);
         }
+
 
         // ── Actualiza el panel lateral ───────────────────────────────────────
         private void ActualizarResumen()
@@ -198,8 +215,6 @@ namespace EXPERIMENTO.Views
         private void BtnConfirmar_Click(object sender, RoutedEventArgs e)
         {
             if (_funcion == null || _seleccionados.Count == 0) return;
-
-            SalasData.MarcarVendidos(_funcion, _seleccionados);
 
             // Navegar a ConfirmarPage pasando los datos de la compra
             Frame.Navigate(typeof(ConfirmarPage), new DatosCompra

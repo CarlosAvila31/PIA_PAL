@@ -12,7 +12,7 @@ namespace EXPERIMENTO
         {
             InitializeComponent();
             // Navegar a Cartelera al iniciar
-            ContentFrame.Navigate(typeof(CartelerapPage));
+            ContentFrame.Navigate(typeof(CarteleraPage));
         }
 
         // ─── Helpers para manejar el estado "activo" del sidebar ───
@@ -50,7 +50,7 @@ namespace EXPERIMENTO
         {
             SetAllInactive();
             SetActive(BtnCartelera);
-            ContentFrame.Navigate(typeof(CartelerapPage));
+            ContentFrame.Navigate(typeof(CarteleraPage));
         }
 
         private void BtnMisBoletos_Click(object sender, RoutedEventArgs e)

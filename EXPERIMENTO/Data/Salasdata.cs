@@ -1,8 +1,8 @@
-﻿using System;
+﻿using EXPERIMENTO.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using EXPERIMENTO.Models;
 
 namespace EXPERIMENTO.Data
 {
@@ -22,27 +22,33 @@ namespace EXPERIMENTO.Data
             Path.Combine(AppContext.BaseDirectory, "Data", "ocupados.json");
 
         // ── Clave única por función ──────────────────────────────────────────
-        // Formato: "peliculaId_sala_yyyy-MM-dd_HH:mm"
-        public static string GetClave(Funcion f)
-            => $"{f.PeliculaId}_{f.Sala}_{f.FechaHora:yyyy-MM-dd_HH:mm}";
+        // Formato: "Sala_fecha_formato"
+        private static string GetClave(Funcion funcion)
+            => $"{funcion.Sala}_{funcion.FechaHora:yyyyMMddHHmm}_{funcion.Formato}";
 
         // ── Obtener layout de una sala ───────────────────────────────────────
         public static SalaLayout? GetLayout(string nombreSala)
             => Salas.TryGetValue(nombreSala, out var layout) ? layout : null;
 
-        // ── Cargar todos los ocupados del JSON ───────────────────────────────
-        private static Dictionary<string, List<string>> CargarOcupados()
+        // ── Cargar ocupados desde archivo ────────────────────────────────────
+        public static Dictionary<string, List<string>> CargarOcupados()
         {
+            if (!File.Exists(RutaJson))
+                return new Dictionary<string, List<string>>();
+
             try
             {
-                if (!File.Exists(RutaJson)) return new();
                 string json = File.ReadAllText(RutaJson);
-                return JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json) ?? new();
+                return JsonSerializer.Deserialize<Dictionary<string, List<string>>>(json)
+                       ?? new Dictionary<string, List<string>>();
             }
-            catch { return new(); }
+            catch
+            {
+                return new Dictionary<string, List<string>>();
+            }
         }
 
-        // ── Guardar ocupados al JSON ─────────────────────────────────────────
+        // ── Guardar ocupados en archivo ──────────────────────────────────────
         private static void GuardarOcupados(Dictionary<string, List<string>> ocupados)
         {
             try
@@ -52,16 +58,6 @@ namespace EXPERIMENTO.Data
                 File.WriteAllText(RutaJson, JsonSerializer.Serialize(ocupados, opciones));
             }
             catch { }
-        }
-
-        // ── API pública ──────────────────────────────────────────────────────
-
-        /// <summary>Devuelve los códigos de asientos ocupados para una función.</summary>
-        public static List<string> GetOcupados(Funcion funcion)
-        {
-            var ocupados = CargarOcupados();
-            string clave = GetClave(funcion);
-            return ocupados.TryGetValue(clave, out var lista) ? lista : new();
         }
 
         /// <summary>Agrega asientos vendidos a una función y los persiste.</summary>
@@ -80,6 +76,14 @@ namespace EXPERIMENTO.Data
             }
 
             GuardarOcupados(ocupados);
+        }
+
+        // ── Obtener lista de ocupados para una función ───────────────────────
+        public static List<string> GetOcupados(Funcion funcion)
+        {
+            var ocupados = CargarOcupados();
+            string clave = GetClave(funcion);
+            return ocupados.ContainsKey(clave) ? ocupados[clave] : new List<string>();
         }
     }
 }
