@@ -179,21 +179,122 @@ namespace EXPERIMENTO.Views
             PosterEmoji.Visibility = Visibility.Visible;
         }
 
+        // ── Extrae el embed URL de YouTube ──
+        private static string? GetEmbedUrl(string trailerUrl)
+        {
+            if (string.IsNullOrEmpty(trailerUrl)) return null;
+            try
+            {
+                var uri = new Uri(trailerUrl);
+
+                // youtube.com/watch?v=XXXX
+                if (uri.Host.Contains("youtube.com"))
+                {
+                    var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+                    var id = query["v"];
+                    return id != null ? $"https://www.youtube.com/watch?v={id}" : null;
+                }
+
+                // youtu.be/XXXX
+                if (uri.Host.Contains("youtu.be"))
+                {
+                    var id = uri.AbsolutePath.TrimStart('/').Split('?')[0];
+                    return $"https://www.youtube.com/watch?v={id}";
+                }
+            }
+            catch { }
+            return null;
+        }
+
+        // ── Abre el trailer en un dialog con WebView2 ──
         private async void BtnTrailer_Click(object sender, RoutedEventArgs e)
         {
             if (_peliculaActual == null) return;
-            var url = _peliculaActual.TrailerUrl;
-            if (string.IsNullOrWhiteSpace(url)) return;
 
-            try
+            var embedUrl = GetEmbedUrl(_peliculaActual.TrailerUrl);
+            if (embedUrl == null) return;
+
+            // ── Overlay oscuro de fondo ──
+            var overlay = new Border
             {
-                var uri = new Uri(url);
-                await Windows.System.Launcher.LaunchUriAsync(uri);
-            }
-            catch
+                Background = new SolidColorBrush(Color.FromArgb(200, 0, 0, 0)),
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalAlignment = VerticalAlignment.Stretch
+            };
+
+            // ── WebView2 ──
+            var webView = new Microsoft.UI.Xaml.Controls.WebView2
             {
-                // ignorar errores de launcher
-            }
+                Width = 1100,
+                Height = 619  // ratio 16:9
+            };
+
+            // ── Botón cerrar ──
+            var btnCerrar = new Button
+            {
+                Content = "✕  Cerrar",
+                HorizontalAlignment = HorizontalAlignment.Right,
+                Background = new SolidColorBrush(Color.FromArgb(255, 30, 30, 30)),
+                Foreground = new SolidColorBrush(Colors.White),
+                BorderThickness = new Thickness(0),
+                CornerRadius = new CornerRadius(8),
+                Padding = new Thickness(16, 8, 16, 8),
+                Margin = new Thickness(0, 0, 0, 10)
+            };
+
+            // ── Contenedor centrado ──
+            var contenedor = new StackPanel
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Spacing = 0
+            };
+            contenedor.Children.Add(btnCerrar);
+            contenedor.Children.Add(new Border
+            {
+                CornerRadius = new CornerRadius(12),
+                Child = webView
+            });
+
+            // ── Grid que apila overlay + contenedor ──
+            var grid = new Grid();
+            grid.Children.Add(overlay);
+            grid.Children.Add(contenedor);
+
+            // ── Popup fullscreen ──
+            var popup = new Microsoft.UI.Xaml.Controls.Primitives.Popup
+            {
+                Child = grid,
+                IsOpen = false
+            };
+
+            // Tamaño del popup = tamaño de la ventana
+            grid.Width = this.ActualWidth;
+            grid.Height = this.ActualHeight;
+
+            // Cerrar al hacer click en overlay o botón
+            btnCerrar.Click += (s, args) =>
+            {
+                webView.CoreWebView2?.Navigate("about:blank");
+                popup.IsOpen = false;
+            };
+            overlay.Tapped += (s, args) =>
+            {
+                webView.CoreWebView2?.Navigate("about:blank");
+                popup.IsOpen = false;
+            };
+
+            // Agregar al árbol visual y abrir
+            (this.Content as Grid)?.Children.Add(popup);
+            popup.IsOpen = true;
+
+            // Inicializar WebView
+            await webView.EnsureCoreWebView2Async();
+            webView.CoreWebView2.Settings.UserAgent =
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                "AppleWebKit/537.36 (KHTML, like Gecko) " +
+                "Chrome/124.0.0.0 Safari/537.36";
+            webView.CoreWebView2.Navigate(embedUrl);
         }
     }
 }
