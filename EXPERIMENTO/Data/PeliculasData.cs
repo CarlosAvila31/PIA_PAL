@@ -53,7 +53,7 @@ namespace EXPERIMENTO.Data
                 Director = "Damien Chazelle",
                 Reparto = "Miles Teller, J. K. Simmons",
                 Sinopsis = "Andrew Neiman es un joven y ambicioso baterista de jazz. Marcado por el fracaso de la carrera literaria de su padre, está obsesionado con alcanzar la cima dentro del elitista conservatorio de música de la Costa Este en el que estudia.",
-                Calificacion = 9.2,
+                Calificacion = 8,
                 TrailerUrl = "https://youtu.be/CX_F8BqNs8Y?si=Ox_bJo54AODWdxor"
             },
             new Pelicula

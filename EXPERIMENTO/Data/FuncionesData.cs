@@ -23,7 +23,7 @@ namespace EXPERIMENTO.Data
                 PeliculaId = 1,
                 Dias       = [DayOfWeek.Monday, DayOfWeek.Wednesday, DayOfWeek.Friday,
                               DayOfWeek.Saturday, DayOfWeek.Sunday],
-                Horas      = ["14:30", "17:00", "20:15"],
+                Horas      = ["14:30", "17:00", "20:15", "22:30"],
                 Sala       = "Sala 1",
                 Formato    = "2D"
             },
