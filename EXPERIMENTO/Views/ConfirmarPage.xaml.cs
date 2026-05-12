@@ -37,18 +37,19 @@ namespace EXPERIMENTO.Views
         }
 
         // ── Confirmar compra: aquí sí se guardan los ocupados ────────────────
-        private void BtnFinalizar_Click(object sender, RoutedEventArgs e)
+        private async void BtnFinalizar_Click(object sender, RoutedEventArgs e)
         {
             if (_datos == null) return;
 
             // Marca asientos vendidos
             SalasData.MarcarVendidos(_datos.Funcion, _datos.AsientosElegidos);
 
-            // Guardar boleto solo aquí, cuando el usuario confirma de verdad
+            BoletoGuardado? boleto = null;
+
             if (SessionService.EstaLogueado)
             {
                 var pelicula = PeliculasData.GetById(_datos.Funcion.PeliculaId);
-                SessionService.GuardarBoleto(new BoletoGuardado
+                boleto = new BoletoGuardado
                 {
                     PeliculaTitulo = pelicula?.Titulo ?? "",
                     FechaHora = _datos.Funcion.FechaHora.ToString("dddd d 'de' MMMM, HH:mm"),
@@ -57,7 +58,20 @@ namespace EXPERIMENTO.Views
                     Asientos = new System.Collections.Generic.List<string>(_datos.AsientosElegidos),
                     Total = _datos.Total,
                     FechaCompra = System.DateTime.Now
-                });
+                };
+                SessionService.GuardarBoleto(boleto);
+            }
+
+            // Generar PDF del ticket
+            if (boleto != null)
+            {
+                BtnFinalizar.IsEnabled = false;
+                BtnFinalizar.Content = "Generando ticket...";
+
+                string? pdfPath = await TicketGenerator.GenerarTicketAsync(boleto);
+
+                if (pdfPath != null)
+                    TicketGenerator.AbrirPdf(pdfPath);
             }
 
             Frame.Navigate(typeof(CarteleraPage));

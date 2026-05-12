@@ -22,8 +22,15 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Scripts\GenerarTicket.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <!-- Posters de películas: agrega tus imágenes en Assets\Posters\ y se incluyen automáticamente -->
     <Content Include="Assets\Posters\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\GenerarTicket.py" />
   </ItemGroup>
 
   <ItemGroup>

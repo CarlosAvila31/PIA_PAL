@@ -157,6 +157,35 @@ namespace EXPERIMENTO.Views
                 Margin = new Thickness(0, 6, 0, 0)
             });
 
+            // Botón Ver boleto
+            var btnVerPdf = new Button
+            {
+                Content = "🎟  Ver boleto en PDF",
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                Background = new SolidColorBrush(Color.FromArgb(255, 30, 30, 30)),
+                Foreground = new SolidColorBrush(Microsoft.UI.Colors.White),
+                BorderBrush = new SolidColorBrush(Color.FromArgb(255, 58, 58, 58)),
+                BorderThickness = new Thickness(1),
+                CornerRadius = new CornerRadius(8),
+                Padding = new Thickness(0, 10, 0, 10),
+                Margin = new Thickness(0, 14, 0, 0)
+            };
+
+            btnVerPdf.Click += async (s, args) =>
+            {
+                btnVerPdf.IsEnabled = false;
+                btnVerPdf.Content = "Generando...";
+
+                string? path = await TicketGenerator.GenerarTicketAsync(boleto);
+                if (path != null)
+                    TicketGenerator.AbrirPdf(path);
+
+                btnVerPdf.Content = "🎟  Ver boleto en PDF";
+                btnVerPdf.IsEnabled = true;
+            };
+
+            contenido.Children.Add(btnVerPdf);
+
             card.Child = contenido;
             return card;
         }

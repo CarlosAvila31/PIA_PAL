@@ -123,7 +123,8 @@
 
                     <!-- Botones -->
                     <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Center">
-                        <Button Content="✓ Confirmar"
+                        <Button x:Name="BtnFinalizar"
+                                Content="✓ Confirmar"
                                 Click="BtnFinalizar_Click"
                                 Background="#F5C842"
                                 Foreground="#0D0D0D"
