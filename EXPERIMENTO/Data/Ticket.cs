@@ -10,7 +10,7 @@ namespace EXPERIMENTO.Data
     {
         // Ruta donde está el script Python (junto al exe)
         private static string ScriptPath =>
-            Path.Combine(AppContext.BaseDirectory, "Scripts", "generar_ticket.py");
+            Path.Combine(AppContext.BaseDirectory, "Scripts", "GenerarTicket.py");
 
         // Carpeta donde se guardan los PDFs de tickets
         private static string TicketsFolder =>

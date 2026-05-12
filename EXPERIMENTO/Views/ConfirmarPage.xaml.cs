@@ -44,34 +44,35 @@ namespace EXPERIMENTO.Views
             // Marca asientos vendidos
             SalasData.MarcarVendidos(_datos.Funcion, _datos.AsientosElegidos);
 
-            BoletoGuardado? boleto = null;
+            BtnFinalizar.IsEnabled = false;
+            BtnFinalizar.Content = "Generando ticket...";
 
+            var pelicula = PeliculasData.GetById(_datos.Funcion.PeliculaId);
+
+            // Crear boleto SIEMPRE
+            var boleto = new BoletoGuardado
+            {
+                PeliculaTitulo = pelicula?.Titulo ?? "",
+                FechaHora = _datos.Funcion.FechaHora.ToString("dddd d 'de' MMMM, HH:mm"),
+                Sala = _datos.Funcion.Sala,
+                Formato = _datos.Funcion.Formato,
+                Asientos = new System.Collections.Generic.List<string>(_datos.AsientosElegidos),
+                Total = _datos.Total,
+                FechaCompra = System.DateTime.Now
+            };
+
+            // Guardar SOLO si hay sesión
             if (SessionService.EstaLogueado)
             {
-                var pelicula = PeliculasData.GetById(_datos.Funcion.PeliculaId);
-                boleto = new BoletoGuardado
-                {
-                    PeliculaTitulo = pelicula?.Titulo ?? "",
-                    FechaHora = _datos.Funcion.FechaHora.ToString("dddd d 'de' MMMM, HH:mm"),
-                    Sala = _datos.Funcion.Sala,
-                    Formato = _datos.Funcion.Formato,
-                    Asientos = new System.Collections.Generic.List<string>(_datos.AsientosElegidos),
-                    Total = _datos.Total,
-                    FechaCompra = System.DateTime.Now
-                };
                 SessionService.GuardarBoleto(boleto);
             }
 
-            // Generar PDF del ticket
-            if (boleto != null)
+            // Generar PDF
+            string? pdfPath = await TicketGenerator.GenerarTicketAsync(boleto);
+
+            if (pdfPath != null)
             {
-                BtnFinalizar.IsEnabled = false;
-                BtnFinalizar.Content = "Generando ticket...";
-
-                string? pdfPath = await TicketGenerator.GenerarTicketAsync(boleto);
-
-                if (pdfPath != null)
-                    TicketGenerator.AbrirPdf(pdfPath);
+                TicketGenerator.AbrirPdf(pdfPath);
             }
 
             Frame.Navigate(typeof(CarteleraPage));
